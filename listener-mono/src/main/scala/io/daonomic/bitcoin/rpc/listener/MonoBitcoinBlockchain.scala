@@ -1,0 +1,10 @@
+package io.daonomic.bitcoin.rpc.listener
+
+import io.daonomic.bitcoin.rpc.core.MonoBitcoind
+import io.daonomic.cats.mono.implicits._
+import reactor.core.publisher.Mono
+
+class MonoBitcoinBlockchain(bitcoind: MonoBitcoind)
+  extends BitcoinBlockchain[Mono](bitcoind) {
+
+}
