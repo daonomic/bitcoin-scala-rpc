@@ -4,8 +4,9 @@ def base(project: Project): Project = project.settings(
   organization := "io.daonomic.bitcoin.rpc",
   bintrayOrganization := Some("daonomic"),
   bintrayPackageLabels := Seq("daonomic", "rpc", "scala", "bitcoin"),
+  bintrayPackage := s"bitcoin-${name.value}",
   licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
-  version := "0.1.1",
+  version := "0.1.0",
   scalaVersion := Versions.scala
 )
 
