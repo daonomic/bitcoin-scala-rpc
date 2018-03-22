@@ -15,16 +15,17 @@ def tests(project: Project): Project = project
   .settings(libraryDependencies += "org.scalacheck" %% "scalacheck" % Versions.scalacheck % "test")
   .settings(libraryDependencies += "org.mockito" % "mockito-all" % Versions.mockito)
 
+def common(project: Project): Project = base(project)
+  .dependsOn(domain, `test-common` % "test")
+
 lazy val util = tests(base(project))
 
 lazy val domain = tests(base(project))
   .dependsOn(util)
 
-def common(project: Project): Project = base(project)
-  .dependsOn(domain, `test-common` % "test")
-
 lazy val `test-common` = base(project)
   .dependsOn(domain)
+  .settings(publish := {})
 
 lazy val core = common(project)
   .dependsOn(util)
