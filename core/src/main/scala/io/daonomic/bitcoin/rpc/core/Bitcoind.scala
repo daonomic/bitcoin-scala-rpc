@@ -17,6 +17,18 @@ class Bitcoind[F[_]](transport: RpcTransport[F])
   def getBlockCount: F[BigInteger] =
     exec("getblockcount")
 
+  def getNewAddress: F[String] =
+    exec("getnewaddress")
+
+  def generate(amount: Int): F[List[String]] =
+    exec("generate", amount)
+
+  def sendToAddress(to: String, amount: Long): F[String] =
+    exec("sendtoaddress", to, amount)
+
+  def importAddress(address: String, label: String = "", rescan: Boolean = false, p2sh: Boolean = false): F[String] =
+    exec("importaddress", address, label, rescan, p2sh)
+
   def getBlockHash(blockNumber: BigInteger): F[String] =
     exec("getblockhash", blockNumber)
 
