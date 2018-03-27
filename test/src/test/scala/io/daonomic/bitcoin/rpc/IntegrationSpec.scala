@@ -7,6 +7,6 @@ import io.daonomic.rpc.tries.ScalajHttpTransport
 import scala.util.Try
 
 trait IntegrationSpec {
-  val transport = ScalajHttpTransport("http://localhost:18332", "user", "pass")
+  val transport = ScalajHttpTransport("http://localhost:18443", "user", "pass")
   val bitcoind = new Bitcoind[Try](transport)
 }

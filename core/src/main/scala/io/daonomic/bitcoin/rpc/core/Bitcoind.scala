@@ -2,6 +2,7 @@ package io.daonomic.bitcoin.rpc.core
 
 import java.math.BigInteger
 
+import cats.implicits._
 import cats.MonadError
 import io.daonomic.bitcoin.rpc.domain.{Block, Transaction}
 import io.daonomic.rpc.RpcHttpClient
@@ -23,11 +24,14 @@ class Bitcoind[F[_]](transport: RpcTransport[F])
   def generate(amount: Int): F[List[String]] =
     exec("generate", amount)
 
-  def sendToAddress(to: String, amount: Long): F[String] =
+  def sendToAddress(to: String, amount: Double): F[String] =
     exec("sendtoaddress", to, amount)
 
-  def importAddress(address: String, label: String = "", rescan: Boolean = false, p2sh: Boolean = false): F[String] =
-    exec("importaddress", address, label, rescan, p2sh)
+  def getRawTransaction(txid: String, verbose: Boolean = false): F[Transaction] =
+    exec("getrawtransaction", txid, verbose)
+
+  def importAddress(address: String, label: String = "", rescan: Boolean = false, p2sh: Boolean = false): F[Unit] =
+    execOption[String]("importaddress", address, label, rescan, p2sh).map(_ => ())
 
   def getBlockHash(blockNumber: BigInteger): F[String] =
     exec("getblockhash", blockNumber)

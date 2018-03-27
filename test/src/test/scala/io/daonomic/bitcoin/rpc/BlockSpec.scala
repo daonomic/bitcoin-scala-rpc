@@ -24,6 +24,6 @@ class BlockSpec extends FlatSpec with IntegrationSpec {
   }
 
   it should "import address" taggedAs ManualTag in {
-    bitcoind.importAddress("mpfMchBDWuvHaCksDVFvFctuBfeQJki98Q", "test1")
+    println(bitcoind.importAddress("mjvathXVxkoeHh7KYhNmUN8uMiSWxvtZUa", "test1"))
   }
 }

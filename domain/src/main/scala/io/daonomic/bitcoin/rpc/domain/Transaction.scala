@@ -8,6 +8,7 @@ case class Transaction(txid: String,
                        locktime: Long,
                        vin: List[TransactionIn],
                        vout: List[TransactionOut],
+                       confirmations: Long,
                        hex: String)
 
 case class TransactionIn(txid: String,
