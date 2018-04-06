@@ -15,12 +15,10 @@ class BlockSpec extends FlatSpec with IntegrationSpec {
   it should "do some basic operations" taggedAs ManualTag in {
     println(bitcoind.getNewAddress)
 
-    bitcoind.generate(101) match {
+    bitcoind.generate(30) match {
       case Failure(th) => th.printStackTrace()
       case Success(value) => println(value)
     }
-
-    println(bitcoind.sendToAddress("2NEzL2XZ7Xp5ZSHvwZ5uvewKk58MwbwBDxG", 100))
   }
 
   it should "import address" taggedAs ManualTag in {

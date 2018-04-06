@@ -6,7 +6,7 @@ def base(project: Project): Project = project.settings(
   bintrayPackageLabels := Seq("daonomic", "rpc", "scala", "bitcoin"),
   bintrayPackage := s"bitcoin-${name.value}",
   licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
-  version := "0.1.2",
+  version := "0.1.3",
   scalaVersion := Versions.scala
 )
 
