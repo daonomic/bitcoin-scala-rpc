@@ -6,19 +6,16 @@ import scala.util.{Failure, Success}
 
 class BlockSpec extends FlatSpec with IntegrationSpec {
   "Bitcoind" should "do some operations with blocks" in {
-    val currentBlock = bitcoind.getBlockCount.get
-    val hash = bitcoind.getBlockHash(currentBlock).get
+    val currentBlock = bitcoind.getBlockCount.block()
+    val hash = bitcoind.getBlockHash(currentBlock).block()
     assert(hash != null)
-    bitcoind.getBlockSimple(hash).get
+    bitcoind.getBlockSimple(hash).block
   }
 
   it should "do some basic operations" taggedAs ManualTag in {
     println(bitcoind.getNewAddress)
 
-    bitcoind.generate(30) match {
-      case Failure(th) => th.printStackTrace()
-      case Success(value) => println(value)
-    }
+    bitcoind.generate(30).block()
   }
 
   it should "import address" taggedAs ManualTag in {
